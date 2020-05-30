@@ -1,25 +1,91 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+
+<head>
+
+    <!-- <meta property="og:url" content="https://enplus.life.ru/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Откуда берется свет?" />
+    <meta property="og:description" content="Как электричество попадает к вам в дом?" />
+    <meta property="og:image" content="https://enplus.life.ru/enplusLife.jpg" />
+	-->
+
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | RZHD-Map</title>
+    <title>RZHD-Map</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <script src="TemplateData/UnityProgress.js"></script>
+    <!--<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=W5L2uFcSBybFKy6-oI6xRIMWAAX9n0LJv00YJ9K25GeUBRzTrMDhukQKCc-6uKIP" charset="UTF-8"></script><script src="TemplateData/UnityProgress.js"></script>
+	-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="Build/UnityLoader.js"></script>
     <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Builds.json", {onProgress: UnityProgress});
+        var gameInstance = UnityLoader.instantiate("gameContainer", "Build/Builds.json", {
+            onProgress: UnityProgress,
+            Module: {
+                onRuntimeInitialized: function () {
+                    UnityProgress(gameInstance, "complete");
+                },
+            },
+            popup: function (message, callbacks) {
+                if (!callbacks || !callbacks.length) {
+                    return;
+                } else if (callbacks.length > 1) {
+                    return UnityLoader.Error.popup(this, message, callbacks);
+                } else if (callbacks[0].callback) {
+                    callbacks[0].callback();
+                }
+            },
+        });
     </script>
-  </head>
-  <body>
+</head>
+
+<body> <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(55398793, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/55398793" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
     <div class="webgl-content">
-      <div id="unityContainer" style="width: 960px; height: 600px"></div>
-      <div class="footer">
-        <div class="webgl-logo"></div>
-        <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
-        <div class="title">RZHD-Map</div>
-      </div>
+        <div id="gameContainer" style="width: 960px; height: 600px"></div>
+        <div class="footer">
+            <div class="webgl-logo"></div>
+            <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+            <div class="title">En+ Group</div>
+        </div>
+        <div id="overlay" class="overlay"></div>
+        <div class="counter">
+            <p id="loadingInfo">loading</p>
+            <h1 id="progressC">0%</h1>
+            <div id="ProgressLineB" class="ProgressLineB"> </div>
+            <div id="ProgressLine" class="ProgressLine"> </div>
+        </div>
+
     </div>
-  </body>
+
+
+    <div id="loadingBox">
+        <div class="vertical-centered-box">
+            <div class="content">
+                <div class="loader-circle"></div>
+                <div class="loader-line-mask">
+                    <div class="loader-line"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>
