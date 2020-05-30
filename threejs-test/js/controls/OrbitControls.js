@@ -786,7 +786,7 @@ var OrbitControls = function ( object, domElement ) {
 
 			case 2:
 
-				mouseAction = scope.mouseButtons.RIGHT;
+				//mouseAction = scope.mouseButtons.RIGHT;
 				break;
 
 			default:
