@@ -47,7 +47,13 @@
           height: 1em;
           transform-origin: top left;
       }
-
+		#social-icons{
+		  width: 100%;
+		  height: 100%;
+	      position: absolute;
+	      top: 0;
+		  left: 0;			
+		}
       #loader {
         position: absolute;
         left: 0;
@@ -91,6 +97,58 @@
   </head>
 
   <body>
+	  <div>
+	  <ul class="social-icons">
+            <li class="vk">
+                <script>
+                    // берет текущий url из браузерной строки
+                    document.write(VK.Share.button(false, {
+                        type: "link_noicon",
+                        text: "Сохранить"
+                    }));
+                </script>
+            </li>
+            <li class="fb">
+                <div data-href="https://poezdnadezhdy.life.ru/" class="fb-share-button" data-layout="button" data-size="small">
+                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"></a>
+                </div>
+            </li>
+            <li class="oclass">
+                <a class="ok">
+                    <div id="ok_shareWidget"></div>
+                    <script>
+                        !function(d, id, did, st, title, description, image) {
+                            function init() {
+                                OK.CONNECT.insertShareWidget(id, did, st, title, description, image);
+                            }
+                            if (!window.OK || !OK.CONNECT || !OK.CONNECT.insertShareWidget) {
+                                var js = d.createElement("script");
+                                js.src = "https://connect.ok.ru/connect.js";
+                                js.onload = js.onreadystatechange = function() {
+                                    if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
+                                        if (!this.executed) {
+                                            this.executed = true;
+                                            setTimeout(init, 0);
+                                        }
+                                    }
+                                }
+                                ;
+                                d.documentElement.appendChild(js);
+                            } else {
+                                init();
+                            }
+                        }(document, "ok_shareWidget", document.URL, '{"sz":20,"st":"oval","nc":1,"nt":1,"bgclr":"ED8207","txclr":"FFFFFF"}', "Поезд надежды", "В канун 75-летия Великой Победы мы вспоминаем о роли работников железной дороги в Великой войне. О поездах несущих надежду. Их подвиги - наша вечная память", "https://poezdnadezhdy.life.ru/assets/cover.png");
+                    </script>
+                </a>
+            </li>
+            <li class="wh">
+                <a href="whatsapp://send?text=https://poezdnadezhdy.life.ru/" data-action="share/whatsapp/share" target="_blank"></a>
+            </li>
+            <li class="te">
+                <a href="tg://msg_url?url=https://poezdnadezhdy.life.ru/&text=В канун 75-летия Великой Победы мы вспоминаем о роли работников железной дороги в Великой войне. О поездах несущих надежду. Их подвиги - наша вечная память" target="_blank"></a>
+            </li>
+        </ul>
+		  </div>
     <div id="gameContainer"></div>
     <div id="loader">
       <img class="logo" src="logo.png">
