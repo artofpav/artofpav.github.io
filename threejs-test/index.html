@@ -19,11 +19,19 @@
 			
 			var camera, controls, scene, renderer;
 			
+
 			scene = new THREE.Scene();
 			scene.background = new THREE.Color( 0xcccccc );
 			scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
 			
-			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+			var base;
+			var loader = new THREE.JSONLoader();
+			loader.load('./assets/mesh/base.json', function(g,m){
+				base = new THREE.Mesh(g,m);
+				scene.add(base);
+				
+			});
+			//camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
 			renderer = new THREE.WebGLRenderer();
 			renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -38,14 +46,17 @@
 
 			controls.screenSpacePanning = false;
 
-			controls.minDistance = 100;
-			controls.maxDistance = 500;
+			controls.minDistance = 1;
+			controls.maxDistance = 10;
 
 			controls.maxPolarAngle = Math.PI / 2;
+			controls.update();
 			
-			scene.add( new THREE.AmbientLight( 0x555555 ) );
-			var light = new THREE.SpotLight( 0xffffff, 1.5 );
+			//scene.add( new THREE.AmbientLight(0x404040) );
+			
+			var light = new THREE.SpotLight( 0x404040, 1.5 );
 				light.position.set( 0, 500, 2000 );
+				light.castShadow = true;
 				scene.add( light );
 			
 			var geometry = new THREE.BoxGeometry();
@@ -55,17 +66,18 @@
 			
 			cube2.position.x = 1;
 			
-			scene.add( cube );
-			scene.add( cube2 );
+			//scene.add( cube );
+			//scene.add( cube2 );
 			
 
 			camera.position.z = 5;
 			
 			function animate() {
 				requestAnimationFrame( animate );
+				controls.update();
 				renderer.render( scene, camera );
-				cube.rotation.x += 0.01;
-				cube.rotation.y += 0.01;
+				//cube.rotation.x += 0.01;
+				//cube.rotation.y += 0.01;
 			}
 			animate();
 		</script>
