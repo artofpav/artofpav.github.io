@@ -1,39 +1,24 @@
-function UnityProgress(gameInstance, progress) {
-    if (!gameInstance.Module)
-        return;
-    if (!gameInstance.logo) {
-        gameInstance.logo = document.createElement("div");
-        gameInstance.logo.className = "logo " + gameInstance.Module.splashScreenStyle;
-        gameInstance.container.appendChild(gameInstance.logo);
-    }
-
-    if (progress == "complete") {
-        gameInstance.logo.style.display = "none";
-       $('#overlay').delay(300).animate({
-            "margin-left": '=4000'
-        }, 'fast').fadeOut();
-        $('#ProgressLine').delay(200).animate({
-            "margin-top": '-=2000'
-        }, 'slow').fadeOut();
-        $('#loadingInfo').delay(300).animate({
-            "margin-top": '-=2000'
-        }, 'slow').fadeOut();
-        $('#progressC').delay(200).animate({
-            "margin-top": '-=2000'
-        }, 'slow').fadeOut();
-        $('#loadingBox').delay(200).animate({
-            "margin-top": '-=2000'
-        }, 'slow');
-        document.getElementById("ProgressLineB").style.display = "none";
-        return;
-    } else if (progress == 1) {
-        document.getElementById("ProgressLine").style.width = (200 * (progress)) + "px";
-        document.getElementById("loadingInfo").innerHTML = "loading";
-        document.getElementById("progressC").innerHTML = Math.floor((100 * progress)) + "%";
-    } else {
-        document.getElementById("loadingInfo").innerHTML = "downloading";
-        document.getElementById("progressC").innerHTML = Math.floor((100 * progress)) + "%";
-        document.getElementById("ProgressLine").style.width = (200 * (progress)) + "px";
-    }
-
+function UnityProgress(unityInstance, progress) {
+  if (!unityInstance.Module)
+    return;
+  if (!unityInstance.logo) {
+    unityInstance.logo = document.createElement("div");
+    unityInstance.logo.className = "logo " + unityInstance.Module.splashScreenStyle;
+    unityInstance.container.appendChild(unityInstance.logo);
+  }
+  if (!unityInstance.progress) {    
+    unityInstance.progress = document.createElement("div");
+    unityInstance.progress.className = "progress " + unityInstance.Module.splashScreenStyle;
+    unityInstance.progress.empty = document.createElement("div");
+    unityInstance.progress.empty.className = "empty";
+    unityInstance.progress.appendChild(unityInstance.progress.empty);
+    unityInstance.progress.full = document.createElement("div");
+    unityInstance.progress.full.className = "full";
+    unityInstance.progress.appendChild(unityInstance.progress.full);
+    unityInstance.container.appendChild(unityInstance.progress);
+  }
+  unityInstance.progress.full.style.width = (100 * progress) + "%";
+  unityInstance.progress.empty.style.width = (100 * (1 - progress)) + "%";
+  if (progress == 1)
+    unityInstance.logo.style.display = unityInstance.progress.style.display = "none";
 }
