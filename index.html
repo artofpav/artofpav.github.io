@@ -6,179 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>RZHD-Map</title>
     <link rel="stylesheet" href="TemplateData/share.css">
-    <style>
-      html {
-        box-sizing: border-box;
-      }
-      *, *:before, *:after {
-        box-sizing: inherit;
-      }
-      body {
-        margin: 0;
-        background: #444;
-      }
-      
-      canvas {
-        width: 100%;
-        height: 100%;
-        display: block;
-      }
-      /* try to handle mobile dialog */
-      canvas + * {
-        z-index: 2;
-      }
-      .logo {
-          display: block;
-          max-width: 100vw;
-          max-height: 70vh;
-      }
-
-      .progress {
-          margin: 1.5em;
-          border: 1px solid white;
-          width: 50vw;
-          display: none;
-      }
-      .progress .full {
-          margin: 2px;
-          background: white;
-          height: 1em;
-          transform-origin: top left;
-      }
-		header .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 80px;
-}
-header .logo>a {
-    display: block;
-    width: 36px;
-    height: 41px;
-    background-image: url("logo.svg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-header .socials {
-    display: flex;
-    align-items: center;
-    width: 181px;
-    height: 66px;
-    justify-content: space-between;
-    margin-right: 30px;
-}
-
-header .socials>a {
-    transition: 0.2s all;
-    border-radius: 20px;
-    width: 40px;
-    height: 40px;
-    background-color: white;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    text-decoration: none;
-    user-select: none;
-}
-
-header .socials>a:hover>i {
-    color: white;
-}
-
-header .vk>i {
-    color: #40709B;
-    font-size: 20px;
-}
-header .fb>i {
-    color: #31589C;
-    font-size: 20px;
-}
-header .tg>i {
-    color: #61A7DD;
-    font-size: 20px;
-}
-header .tw>i {
-    color: #1FADE8;
-    font-size: 20px;
-}
-
-header a.vk:hover {
-    background-color: #40709B;
-}
-header a.fb:hover {
-    background-color: #31589C;
-}
-header a.tg:hover {
-    background-color: #61A7DD;
-}
-header a.tw:hover {
-    background-color: #1FADE8;
-}
-
-#gameContainer {
-    width: 100vw;
-    height: 100vh;
-    z-index: 2;
-}
-      #loader {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .spinner,
-      .spinner:after {
-        border-radius: 50%;
-        width: 5em;
-        height: 5em;
-      }
-      .spinner {
-        margin: 10px;
-        font-size: 10px;
-        position: relative;
-        text-indent: -9999em;
-        border-top: 1.1em solid rgba(255, 255, 255, 0.2);
-        border-right: 1.1em solid rgba(255, 255, 255, 0.2);
-        border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
-        border-left: 1.1em solid #ffffff;
-        transform: translateZ(0);
-        animation: spinner-spin 1.1s infinite linear;
-      }
-      @keyframes spinner-spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-    </style>
+	<link rel="stylesheet" href="TemplateData/main.css">
 	  
-	  <header>
-    <div class="logo"><a href="https://mash.ru"></a></div>
-    <div class="socials">
-      <a class="vk" href="https://vk.com/mash"><i class="fab fa-vk"></i></a>
-      <a class="fb" href="https://www.facebook.com/breakingmash/"><i class="fab fa-facebook-f"></i></a>
-      <a class="tg" href="https://tg.mash.ru"><i class="fab fa-telegram-plane"></i></a>
-      <a class="tw" href="https://twitter.com/mash_breaking"><i class="fab fa-twitter"></i></a>
-    </div>
-  </header>
   </head>
 
   <body>
-
+	<header>
+		<div class="logo"><a href="https://mash.ru"></a></div>
+		<div class="socials">
+			<a class="vk" href="https://vk.com/mash"><i class="fab fa-vk"></i></a>
+			<a class="fb" href="https://www.facebook.com/breakingmash/"><i class="fab fa-facebook-f"></i></a>
+			<a class="tg" href="https://tg.mash.ru"><i class="fab fa-telegram-plane"></i></a>
+			<a class="tw" href="https://twitter.com/mash_breaking"><i class="fab fa-twitter"></i></a>
+		</div>
+	 </header>
 
     <div id="gameContainer"></div>
     <div id="loader">
