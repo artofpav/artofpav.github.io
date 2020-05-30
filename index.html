@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>RZHD-Map</title>
+    <link rel="stylesheet" href="TemplateData/share.css">
     <style>
       html {
         box-sizing: border-box;
@@ -16,10 +17,7 @@
         margin: 0;
         background: #444;
       }
-      #gameContainer {
-        width: 100vw;
-        height: 100vh;
-      }
+      
       canvas {
         width: 100%;
         height: 100%;
@@ -47,21 +45,85 @@
           height: 1em;
           transform-origin: top left;
       }
-		#container {
-  width: 100px;
-  height: 100px;
-  position: relative;
+		header .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 80px;
 }
-#navi,
-#infoi {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+header .logo>a {
+    display: block;
+    width: 36px;
+    height: 41px;
+    background-image: url("logo.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-#infoi {
-  z-index: 10;
+
+header .socials {
+    display: flex;
+    align-items: center;
+    width: 181px;
+    height: 66px;
+    justify-content: space-between;
+    margin-right: 30px;
+}
+
+header .socials>a {
+    transition: 0.2s all;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-decoration: none;
+    user-select: none;
+}
+
+header .socials>a:hover>i {
+    color: white;
+}
+
+header .vk>i {
+    color: #40709B;
+    font-size: 20px;
+}
+header .fb>i {
+    color: #31589C;
+    font-size: 20px;
+}
+header .tg>i {
+    color: #61A7DD;
+    font-size: 20px;
+}
+header .tw>i {
+    color: #1FADE8;
+    font-size: 20px;
+}
+
+header a.vk:hover {
+    background-color: #40709B;
+}
+header a.fb:hover {
+    background-color: #31589C;
+}
+header a.tg:hover {
+    background-color: #61A7DD;
+}
+header a.tw:hover {
+    background-color: #1FADE8;
+}
+
+#gameContainer {
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
 }
       #loader {
         position: absolute;
@@ -103,72 +165,30 @@
       }
 
     </style>
+	  
+	  <header>
+    <div class="logo"><a href="https://mash.ru"></a></div>
+    <div class="socials">
+      <a class="vk" href="https://vk.com/mash"><i class="fab fa-vk"></i></a>
+      <a class="fb" href="https://www.facebook.com/breakingmash/"><i class="fab fa-facebook-f"></i></a>
+      <a class="tg" href="https://tg.mash.ru"><i class="fab fa-telegram-plane"></i></a>
+      <a class="tw" href="https://twitter.com/mash_breaking"><i class="fab fa-twitter"></i></a>
+    </div>
+  </header>
   </head>
 
   <body>
-	  <div id="container">
-		  <div id="infoi">
+
+
     <div id="gameContainer"></div>
     <div id="loader">
       <img class="logo" src="logo.png">
       <div class="spinner"></div>
       <div class="progress"><div class="full"></div></div>
     </div>
-	  </div>
-		  <div id="navi">
-			  <ul>
-            <li class="vk">
-                <script>
-                    // берет текущий url из браузерной строки
-                    document.write(VK.Share.button(false, {
-                        type: "link_noicon",
-                        text: "Сохранить"
-                    }));
-                </script>
-            </li>
-            <li class="fb">
-                <div data-href="https://poezdnadezhdy.life.ru/" class="fb-share-button" data-layout="button" data-size="small">
-                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"></a>
-                </div>
-            </li>
-            <li class="oclass">
-                <a class="ok">
-                    <div id="ok_shareWidget"></div>
-                    <script>
-                        !function(d, id, did, st, title, description, image) {
-                            function init() {
-                                OK.CONNECT.insertShareWidget(id, did, st, title, description, image);
-                            }
-                            if (!window.OK || !OK.CONNECT || !OK.CONNECT.insertShareWidget) {
-                                var js = d.createElement("script");
-                                js.src = "https://connect.ok.ru/connect.js";
-                                js.onload = js.onreadystatechange = function() {
-                                    if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
-                                        if (!this.executed) {
-                                            this.executed = true;
-                                            setTimeout(init, 0);
-                                        }
-                                    }
-                                }
-                                ;
-                                d.documentElement.appendChild(js);
-                            } else {
-                                init();
-                            }
-                        }(document, "ok_shareWidget", document.URL, '{"sz":20,"st":"oval","nc":1,"nt":1,"bgclr":"ED8207","txclr":"FFFFFF"}', "Поезд надежды", "В канун 75-летия Великой Победы мы вспоминаем о роли работников железной дороги в Великой войне. О поездах несущих надежду. Их подвиги - наша вечная память", "https://poezdnadezhdy.life.ru/assets/cover.png");
-                    </script>
-                </a>
-            </li>
-            <li class="wh">
-                <a href="whatsapp://send?text=https://poezdnadezhdy.life.ru/" data-action="share/whatsapp/share" target="_blank"></a>
-            </li>
-            <li class="te">
-                <a href="tg://msg_url?url=https://poezdnadezhdy.life.ru/&text=В канун 75-летия Великой Победы мы вспоминаем о роли работников железной дороги в Великой войне. О поездах несущих надежду. Их подвиги - наша вечная память" target="_blank"></a>
-            </li>
-        </ul>
-		  </div>
-	  
-		  </div>
+
+		  
+
   </body>
 
   <script src="Build/UnityLoader.js"></script>
