@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
-
-  <head>
+<html lang="en-us"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>RZHD-Map</title>
@@ -50,9 +48,30 @@
     if (progress === 1 && !gameInstance.removeTimeout) {
       gameInstance.removeTimeout = setTimeout(function() {
           loader.style.display = "none";
+		  document.querySelector("#gameContainer").style.display = 'block';
       }, 2000);
+    } else {
+      document.querySelector("#gameContainer").style.display = 'none';
     }
   }
+
+    if (progress === 1 && !gameInstance.removeTimeout) {
+      document.querySelector("#progress").style.display = "none";
+      document.querySelector("#button").style.display = "block";
+      ym(55253671, 'reachGoal', 'loaded');
+    } else {
+      document.querySelector("#gameContainer").style.display = 'none';
+    }
+	  
+	  
+  function start() {
+    ym(55253671, 'reachGoal', 'start');
+    document.querySelector("#gameContainer").style.display = 'block';
+    document.querySelector("#loader").style.display = "none";
+  }
+  window.en = function() {
+    ym(55253671, 'reachGoal', 'enplus');
+  };
   </script>
 
 </html>
