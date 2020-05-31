@@ -90,15 +90,20 @@
 				console.log( 'container:', container );
 				console.log( 'container:', container2 );
 				//document.body.appendChild( container );
-				
-				renderer = new THREE.WebGLRenderer( { antialias: true, canvas: container } );
+				let pixelRatio = window.devicePixelRatio
+				let AA = true
+				if (pixelRatio > 1) {
+				  AA = false
+				}
+				renderer = new THREE.WebGLRenderer( { antialias: AA, canvas: container } );
 				renderer.shadowMap.enabled = true;
 				renderer.shadowMap.type = THREE.PCFShadowMap;
 				renderer.shadowMap.autoUpdate = true;
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.powerPreference = 'high-performance';
 				
-				renderer2 = new THREE.WebGLRenderer( { antialias: true, canvas: container2 } );
+				renderer2 = new THREE.WebGLRenderer( { antialias: AA, canvas: container2 } );
 				renderer2.shadowMap.enabled = true;
 				renderer2.shadowMap.type = THREE.PCFSoftShadowMap;
 				renderer2.setPixelRatio( window.devicePixelRatio );
@@ -216,7 +221,7 @@
 						if ( node.isMesh ) { 
 							node.castShadow = true; 
 							node.receiveShadow = true; 
-							node.material = boxmaterial;
+							//node.material = boxmaterial;
 						}
 
 					} );
