@@ -261,9 +261,9 @@ var OrbitControls = function ( object, domElement ) {
 		scope.domElement.removeEventListener( 'mousedown', onMouseDown, false );
 		//scope.domElement.removeEventListener( 'wheel', onMouseWheel, false );
 
-		scope.domElement.removeEventListener( 'touchstart', onTouchStart, false );
-		scope.domElement.removeEventListener( 'touchend', onTouchEnd, false );
-		scope.domElement.removeEventListener( 'touchmove', onTouchMove, false );
+		//scope.domElement.removeEventListener( 'touchstart', onTouchStart, false );
+		//scope.domElement.removeEventListener( 'touchend', onTouchEnd, false );
+		//scope.domElement.removeEventListener( 'touchmove', onTouchMove, false );
 
 		document.removeEventListener( 'mousemove', onMouseMove, false );
 		document.removeEventListener( 'mouseup', onMouseUp, false );
@@ -1112,9 +1112,9 @@ var OrbitControls = function ( object, domElement ) {
 	scope.domElement.addEventListener( 'mousedown', onMouseDown, false );
 	//scope.domElement.addEventListener( 'wheel', onMouseWheel, false );
 
-	scope.domElement.addEventListener( 'touchstart', onTouchStart, false );
-	scope.domElement.addEventListener( 'touchend', onTouchEnd, false );
-	scope.domElement.addEventListener( 'touchmove', onTouchMove, false );
+	//scope.domElement.addEventListener( 'touchstart', onTouchStart, false );
+	//scope.domElement.addEventListener( 'touchend', onTouchEnd, false );
+	//scope.domElement.addEventListener( 'touchmove', onTouchMove, false );
 
 	scope.domElement.addEventListener( 'keydown', onKeyDown, false );
 
