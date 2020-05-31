@@ -122,13 +122,13 @@
 				controls.minDistance = 10;
 				controls.maxDistance = 10;
 
-				controls.minPolarAngle = Math.PI / 2.5; // radians
-				controls.maxPolarAngle = Math.PI / 2.5;
+				controls.minPolarAngle = Math.PI / 2.3; // radians
+				controls.maxPolarAngle = Math.PI / 2.3;
 				
 				// How far you can orbit horizontally, upper and lower limits.
 				// If set, must be a sub-interval of the interval [ - Math.PI, Math.PI ].
 				controls.minAzimuthAngle = - Math.PI / 2.3; // radians
-				controls.maxAzimuthAngle = Math.PI / 10; // radians
+				controls.maxAzimuthAngle = Math.PI / 2.3; // radians
 				
 				controls.update();
 				
@@ -145,11 +145,11 @@
 				controls2.maxPolarAngle = Math.PI / 2.3;
 				controls2.update();
 
-				//scene.add( new THREE.AmbientLight(0xccccdd, 0.7) );
+				scene.add( new THREE.AmbientLight(0xccccdd, 0.7) );
 				scene2.add( new THREE.AmbientLight(0xccccdd, 0.7) );
 
-				var light = new THREE.DirectionalLight( 0xffffff, 1.5, 100 );
-				light.position.set( -2, 1, -2 ); 			//default; light shining from top
+				var light = new THREE.DirectionalLight( 0xffffff, 1, 100 );
+				light.position.set( 2, 1, 2 ); 			//default; light shining from top
 				light.castShadow = true;            // default false
 				light.shadowCameraVisible = true;
 				
@@ -160,21 +160,9 @@
 				light.shadow.camera.far = 1000;     // default
 				light.shadow.bias = -0.0001;
 				
-				var light3 = new THREE.DirectionalLight( 0xaaaaff, 1, 100 );
-				light3.position.set( 20, 1, 10 ); 			//default; light shining from top
-				light3.castShadow = false;            // default false
-				light3.shadowCameraVisible = true;
-				
-				//Set up shadow properties for the light
-				light3.shadow.mapSize.width = 2048;  // default
-				light3.shadow.mapSize.height = 2048; // default
-				light3.shadow.camera.near = 0.0001;    // default
-				light3.shadow.camera.far = 1000;     // default
-				
 				scene.add( light );
-				scene.add( light3 );
 				
-				var light2 = new THREE.DirectionalLight( 0xccccff, 1, 100 );
+				var light2 = new THREE.DirectionalLight( 0xffffff, 1, 100 );
 				light2.position.set( 2, 1, 2 ); 			//default; light shining from top
 				light2.castShadow = true;            // default false
 				light2.shadowCameraVisible = true;
