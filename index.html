@@ -93,7 +93,8 @@
 				
 				renderer = new THREE.WebGLRenderer( { antialias: true, canvas: container } );
 				renderer.shadowMap.enabled = true;
-				renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+				renderer.shadowMap.type = THREE.PCFShadowMap;
+				renderer.shadowMap.autoUpdate = true;
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				
@@ -109,6 +110,7 @@
 				window.addEventListener('resize', onWindowResize, false );
 				window.addEventListener( 'click', onDocumentMouseClick, false );
 				window.addEventListener( 'touchstart', onDocumentMouseClick, false );
+
 				
 				raycaster.setFromCamera( mouse, camera );
 				raycaster2.setFromCamera( mouse2, camera2 );
@@ -154,22 +156,15 @@
 				light.shadowCameraVisible = true;
 				
 				//Set up shadow properties for the light
-				light.shadow.mapSize.width = 2048;  // default
-				light.shadow.mapSize.height = 2048; // default
-				light.shadow.camera.near = 0.0001;    // default
-				light.shadow.camera.far = 1000;     // default
-				light.shadow.bias = -0.0001;
+				light.shadow.mapSize.width = 512;  // default
+				light.shadow.mapSize.height = 512; // default
+				light.shadow.camera.near = 0.01;    // default
+				light.shadow.camera.far = 100;     // default
+				light.shadow.bias = -0.001;
 				
 				var light3 = new THREE.DirectionalLight( 0xaaaaff, 1, 100 );
 				light3.position.set( 20, 1, 10 ); 			//default; light shining from top
 				light3.castShadow = false;            // default false
-				light3.shadowCameraVisible = true;
-				
-				//Set up shadow properties for the light
-				light3.shadow.mapSize.width = 2048;  // default
-				light3.shadow.mapSize.height = 2048; // default
-				light3.shadow.camera.near = 0.0001;    // default
-				light3.shadow.camera.far = 1000;     // default
 				
 				scene.add( light );
 				scene.add( light3 );
@@ -180,17 +175,17 @@
 				light2.shadowCameraVisible = true;
 				
 				//Set up shadow properties for the light
-				light2.shadow.mapSize.width = 2048;  // default
-				light2.shadow.mapSize.height = 2048; // default
-				light2.shadow.camera.near = 0.0001;    // default
-				light2.shadow.camera.far = 1000;     // default
-				light2.shadow.bias = -0.0001;
+				light.shadow.mapSize.width = 512;  // default
+				light.shadow.mapSize.height = 512; // default
+				light.shadow.camera.near = 0.01;    // default
+				light.shadow.camera.far = 100;     // default
+				light.shadow.bias = -0.001;
 				scene2.add( light2 );
 
 				
 
 				var boxgeometry = new THREE.CubeGeometry(1, 1, 1);
-				var boxmaterial = new THREE.MeshStandardMaterial({
+				var boxmaterial = new THREE.MeshLambertMaterial ({
 					color: 0x0aeedf
 				});
 				cube = new THREE.Mesh(boxgeometry, boxmaterial);
@@ -221,7 +216,7 @@
 						if ( node.isMesh ) { 
 							node.castShadow = true; 
 							node.receiveShadow = true; 
-							//node.material = boxmaterial;
+							node.material = boxmaterial;
 						}
 
 					} );
@@ -289,6 +284,10 @@
 				
 				renderer.render( scene, camera );
 				renderer2.render( scene, camera2 );
+				console.log("Scene polycount:", renderer.info.render.triangles)
+				console.log("Active Drawcalls:", renderer.info.render.calls)
+				console.log("Textures in Memory", renderer.info.memory.textures)
+				console.log("Geometries in Memory", renderer.info.memory.geometries)
 			}
 			
 			function animate() {
@@ -299,6 +298,7 @@
 				renderer2.render( scene2, camera2 );
 				cube.rotation.x += 0.01;
 				cube.rotation.y += 0.01;
+				
 			}
 			
 			function onWindowResize(){
