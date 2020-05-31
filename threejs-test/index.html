@@ -109,6 +109,7 @@
 
 				window.addEventListener('resize', onWindowResize, false );
 				window.addEventListener( 'click', onDocumentMouseClick, false );
+				window.addEventListener( 'touchstart', onDocumentMouseClick, false );
 				
 				raycaster.setFromCamera( mouse, camera );
 				raycaster2.setFromCamera( mouse2, camera2 );
